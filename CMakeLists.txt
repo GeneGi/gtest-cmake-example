@@ -16,8 +16,8 @@ set(CMAKE_CXX_FLAGS "-g -Wall")
 ################################
 # Normal Libraries & Executables
 ################################
-add_library(project1_lib project1.cpp)
-add_executable(project1 main.cpp)
+add_library(project1_lib src/project1.cpp)
+add_executable(project1 src/main.cpp)
 # Key idea: SEPARATE OUT your main() function into its own file so it can be its
 # own executable. Separating out main() means you can add this library to be
 # used elsewhere.
@@ -29,7 +29,7 @@ target_link_libraries(project1 project1_lib)
 ################################
 if (test)
   # This adds another subdirectory, which has 'project(gtest)'.
-  add_subdirectory(lib/gtest-1.6.0)
+  add_subdirectory(lib/googletest)
 
   enable_testing()
 
@@ -40,7 +40,7 @@ if (test)
   ##############
   # Unit Tests
   ##############
-  add_executable(runUnitTests test_project1.cpp)
+  add_executable(runUnitTests test/test_project1.cpp)
 
   # Standard linking to gtest stuff.
   target_link_libraries(runUnitTests gtest gtest_main)
